@@ -1,6 +1,6 @@
-describe('factorial', function() {
-  it("is true when the function returns the factorial of the inputted number", function() {
-    expect(factorial(5)).to.equal(120);
+describe('cryptosquare', function() {
+  it("is true when the function calculates the length correctly of the inputted string", function() {
+    expect(cryptosquare("helloyou").length).to.equal(3);
   });
 
 });
