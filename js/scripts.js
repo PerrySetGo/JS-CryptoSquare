@@ -13,21 +13,17 @@ var squareRoot = Math.sqrt(inputStringLength);
 
   var splits = inputString.match(new RegExp('.{1,' + squareRoot + '}', 'g')); //insert separator every nth place
 
-  for (var i = 0; i<splits.length; i++){
-  console.log(splits[i]); //split the string and create an array
-  }
-
-  return;
+  return splits;
 
   }
-
-
 
 $(document).ready(function() {
   $("form#cryptosquare").submit(function(event) {
     inputString = $("input#input1").val();
 
+
     var result = cryptosquare(inputString);
+
 
       $(".answer").text("result: " + result);
 
