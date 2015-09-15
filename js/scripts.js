@@ -1,55 +1,64 @@
-  var cryptosquare = function(inputString) {
 
-inputString = inputString.replace(/[^a-zA-Z0-9]/g, '');
-inputString = inputString.toLowerCase();
-  var inputStringLength = inputString.length;
+  var createCleanString = function(inputString){
+      cleanString = inputString.toLowerCase(); //lowercase
+      cleanString = inputString.replace(/[^a-zA-Z0-9]/g, '');//clean
 
-  var squareRoot = Math.sqrt(inputStringLength);
+    return cleanString;
+  }
 
-    squareRoot = Math.ceil(squareRoot);
-    var remainder = inputStringLength - (squareRoot * squareRoot);
-
-  var splitWordsArray = new Array();
-  var i = squareRoot;
-
-  do {
-      splitWordsArray.push(inputString.substring(0, i));
-  } while((inputString = inputString.substring(i, inputString.length)) != "");
-
-  var htmlString="";
-
-  for (var count = 0; count < splitWordsArray.length; count++){
-
-    htmlString = htmlString + splitWordsArray[count] + "<br>"; 
+  var createSquareRoot = function(cleanString){
+      var inputStringLength = cleanString.length;
+      console.log(inputStringLength);
+      var squareRoot = Math.sqrt(inputStringLength); //generate sq rt
+      squareRoot = Math.ceil(squareRoot);
+      var remainder = inputStringLength - (squareRoot * squareRoot);
+    return squareRoot;
   }
 
 
-  return htmlString;
+  var createSplitWordsArray = function(squareRoot, cleanString){
+      var splitWordsArray = new Array();
+      var i = squareRoot;
+
+      do {
+          splitWordsArray.push(cleanString.substring(0, i));
+      } while((cleanString = cleanString.substring(i, cleanString.length)) != "");
+
+      return splitWordsArray;
   }
 
-var codePhrase = function(splitWordsArray){
+   var createHtmlString = function(splitWordsArray){
+     var htmlString="";
+     for (var count = 0; count < splitWordsArray.length; count++){
 
- var codePhraseArray = new Array();
- var fiver = 0; 
+       htmlString = htmlString + splitWordsArray[count] + "<br>";
+     }
+     return htmlString;
 
- for (var i = 0; i < splitWordsArray.length; i++){
-  codePhraseArray.push()
- }
+   }
 
-}
-
+  var createCodePhrase = function(cleanString, squareRoot){
+     var codePhrase = "";
+     var wordNo = squareRoot;
+     codePhrase = cleanString.replace(/(.{5})/g, '$1 '); //need to make new array here.
+     return codePhrase;
+    }
 
 
 $(document).ready(function() {
   $("form#cryptosquare").submit(function(event) {
     inputString = $("input#input1").val();
 
-    var result = cryptosquare(inputString);
-    var phrase = 
+    var cleanString = createCleanString(inputString);
+    var squareRoot = createSquareRoot(cleanString);
+    var splitWordsArray = createSplitWordsArray(squareRoot, cleanString);
 
-      $(".answer").html(result); 
+    var htmlString = createHtmlString(splitWordsArray);
+    var codePhrase = createCodePhrase(cleanString, squareRoot);
 
-      $(".phrase").html(result);  
+      $(".answer").html(htmlString);
+
+      $(".phrase").html(codePhrase);
 
     $("#result").show();
     event.preventDefault();
