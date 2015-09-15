@@ -1,31 +1,55 @@
-var cryptosquare = function(inputString) {
+  var cryptosquare = function(inputString) {
 
-var inputStringLength = inputString.length;
-console.log("inputStringLength: " + inputStringLength);
+inputString = inputString.replace(/[^a-zA-Z0-9]/g, '');
+inputString = inputString.toLowerCase();
+  var inputStringLength = inputString.length;
 
-var squareRoot = Math.sqrt(inputStringLength);
-  console.log("squareRoot: " + squareRoot);
+  var squareRoot = Math.sqrt(inputStringLength);
 
-  squareRoot = Math.ceil(squareRoot);
-  console.log("squareRoot ROUYNDED: " + squareRoot);
-  var remainder = inputStringLength - (squareRoot * squareRoot);
-  console.log("remainder: " + remainder);
+    squareRoot = Math.ceil(squareRoot);
+    var remainder = inputStringLength - (squareRoot * squareRoot);
 
-  var splits = inputString.match(new RegExp('.{1,' + squareRoot + '}', 'g')); //insert separator every nth place
+  var splitWordsArray = new Array();
+  var i = squareRoot;
 
-  return splits;
+  do {
+      splitWordsArray.push(inputString.substring(0, i));
+  } while((inputString = inputString.substring(i, inputString.length)) != "");
 
+  var htmlString="";
+
+  for (var count = 0; count < splitWordsArray.length; count++){
+
+    htmlString = htmlString + splitWordsArray[count] + "<br>"; 
   }
+
+
+  return htmlString;
+  }
+
+var codePhrase = function(splitWordsArray){
+
+ var codePhraseArray = new Array();
+ var fiver = 0; 
+
+ for (var i = 0; i < splitWordsArray.length; i++){
+  codePhraseArray.push()
+ }
+
+}
+
+
 
 $(document).ready(function() {
   $("form#cryptosquare").submit(function(event) {
     inputString = $("input#input1").val();
 
-
     var result = cryptosquare(inputString);
+    var phrase = 
 
+      $(".answer").html(result); 
 
-      $(".answer").text("result: " + result);
+      $(".phrase").html(result);  
 
     $("#result").show();
     event.preventDefault();
