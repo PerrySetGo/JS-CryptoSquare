@@ -8,7 +8,6 @@
 
   var createSquareRoot = function(cleanString){
       var inputStringLength = cleanString.length;
-      console.log(inputStringLength);
       var squareRoot = Math.sqrt(inputStringLength); //generate sq rt
       squareRoot = Math.ceil(squareRoot);
       var remainder = inputStringLength - (squareRoot * squareRoot);
@@ -37,11 +36,22 @@
 
    }
 
-  var createCodePhrase = function(cleanString, squareRoot){
-     var codePhrase = "";
-     var wordNo = squareRoot;
-     codePhrase = cleanString.replace(/(.{5})/g, '$1 '); //need to make new array here.
-     return codePhrase;
+  var createCodePhrase = function(splitWordsArray){
+      var newString ="";
+       for (var i = 0; i < splitWordsArray.length; i++)
+       {
+       newString = newString + splitWordsArray[i].charAt(0);
+      }
+      //debugger;
+      var c = 5
+      var newStringFormatted="";
+
+      for (i=0; i < newString.length; i=i+5){
+      newStringFormatted = newStringFormatted + newString.substr(i, c) + " ";
+      c=c+6;
+      }
+    return newStringFormatted;
+
     }
 
 
@@ -54,11 +64,11 @@ $(document).ready(function() {
     var splitWordsArray = createSplitWordsArray(squareRoot, cleanString);
 
     var htmlString = createHtmlString(splitWordsArray);
-    var codePhrase = createCodePhrase(cleanString, squareRoot);
+    var newString = createCodePhrase(splitWordsArray);
 
       $(".answer").html(htmlString);
 
-      $(".phrase").html(codePhrase);
+      $(".phrase").html(newString);
 
     $("#result").show();
     event.preventDefault();
