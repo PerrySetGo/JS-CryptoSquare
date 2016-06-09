@@ -17,7 +17,7 @@
 
   var createSplitWordsArray = function(squareRoot, cleanString){
       var splitWordsArray = new Array();
-      var i = squareRoot;
+      var i = squareRoot-1;
 
       do {
           splitWordsArray.push(cleanString.substring(0, i));
@@ -37,20 +37,30 @@
    }
 
   var createCodePhrase = function(splitWordsArray){
-      var newString ="";
-       for (var i = 0; i < splitWordsArray.length; i++)
-       {
-       newString = newString + splitWordsArray[i].charAt(0);
-      }
-      //debugger;
-      var c = 5
-      var newStringFormatted="";
+    debugger;
+      var newStringArray =[]; //take the first char of the first array item
+                              //then take the first char of the second array item.
+                              //stop when you have reached the end of the array.
+                              //then take the second char of the first
+                              //continue until you have again reached end.
 
-      for (i=0; i < newString.length; i=i+5){
-      newStringFormatted = newStringFormatted + newString.substr(i, c) + " ";
-      c=c+6;
+      for (var i = 0; i < 9; i++){
+        for (var j = 0; j < 8; j= j + ){
+          newStringArray.push(splitWordsArray[i][j]);
+          console.log(newStringArray);
+        }
       }
-    return newStringFormatted;
+
+
+
+      // var c = 5;
+      // var newStringFormatted="";
+      //
+      // for (i=0; i < newString.length; i=i+5){
+      // newStringFormatted = newStringFormatted + newString.substr(i, c) + " ";
+      // c=c+6;
+      // }
+    return newStringArray;
 
     }
 
@@ -58,6 +68,7 @@
 $(document).ready(function() {
   $("form#cryptosquare").submit(function(event) {
     inputString = $("input#input1").val();
+
 
     var cleanString = createCleanString(inputString);
     var squareRoot = createSquareRoot(cleanString);
