@@ -36,31 +36,24 @@
 
    }
 
-  var createCodePhrase = function(splitWordsArray){
-    debugger;
+  var createCodePhrase = function(splitWordsArray, cleanString){
+  //  debugger;
       var newStringArray =[]; //take the first char of the first array item
                               //then take the first char of the second array item.
                               //stop when you have reached the end of the array.
+
                               //then take the second char of the first
                               //continue until you have again reached end.
 
-      for (var i = 0; i < 9; i++){
-        for (var j = 0; j < 8; j= j + ){
-          newStringArray.push(splitWordsArray[i][j]);
-          console.log(newStringArray);
-        }
+
+console.log(splitWordsArray);
+  for (var j = 0; j < splitWordsArray.length; j++) {
+      for (var i = 0; i < splitWordsArray.length; i++){
+        newStringArray.push(splitWordsArray[i].charAt(j));
       }
-
-
-
-      // var c = 5;
-      // var newStringFormatted="";
-      //
-      // for (i=0; i < newString.length; i=i+5){
-      // newStringFormatted = newStringFormatted + newString.substr(i, c) + " ";
-      // c=c+6;
-      // }
-    return newStringArray;
+    }
+    var newString = newStringArray.join("").replace(/.{5}/g, "$&" + " ");
+    return newString;
 
     }
 
@@ -75,7 +68,7 @@ $(document).ready(function() {
     var splitWordsArray = createSplitWordsArray(squareRoot, cleanString);
 
     var htmlString = createHtmlString(splitWordsArray);
-    var newString = createCodePhrase(splitWordsArray);
+    var newString = createCodePhrase(splitWordsArray, htmlString);
 
       $(".answer").html(htmlString);
 
